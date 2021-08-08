@@ -2,4 +2,21 @@
 
 {% block title %}Login{% endblock title %}
 
-{% block content %}{% endblock content %}
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            {% for form_filter in form %}
+                <ul>
+                    <li>{{form_filter.label}}</li>
+                    <li>{{form_filter}}</li>
+                    {% comment %} <li>{{form_filter.errors}}</li> {% endcomment %}
+                </ul>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary"> Login</button>
+            {% comment %} {{form.as_p}} {% endcomment %}
+        </div>
+    </form>
+
+
+{% endblock content %}

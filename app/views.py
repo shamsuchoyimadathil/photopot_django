@@ -7,6 +7,7 @@ from django.views.generic.list import ListView
 from django.views.generic import CreateView
 
 from . import models
+from . import forms
 
 # Create your views here.
 class MainPage(ListView):
@@ -29,7 +30,8 @@ class Favorites(ListView):
     template_name = "app/favorite.html"
     #model 
 
-class SignUP(CreateView):
+class SignUP(FormView):
     template_name = "app/signup.html"
-    #form_class 
+    form_class = forms.SignUpForm
     success_url = "/login-page/"
+    
