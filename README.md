@@ -1,0 +1,1 @@
+it's a django app for photo uploading , 
