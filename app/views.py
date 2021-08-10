@@ -13,18 +13,21 @@ from . import forms
 class MainPage(ListView):
     template_name = "app/main.html"
     model = models.Upload
+    queryset = models.Upload.objects.all()
+    context_object_name = "mainPage"
 
 class LoginPage(LoginView):
     template_name = "app/login.html"
-    success_url = "upload-page"
+    #success_url = "/main"
 
 class UploadPage(FormView):
     template_name = "app/upload.html"
-    success_url= "/main-page/"
+    success_url= "/main"
+    form_class = forms.UploadForm
 
 class DetailImage(DetailView):
     template_name = "app/detail.html"
-    # model 
+    model = models.Upload
 
 class Favorites(ListView):
     template_name = "app/favorite.html"
@@ -33,5 +36,5 @@ class Favorites(ListView):
 class SignUP(FormView):
     template_name = "app/signup.html"
     form_class = forms.SignUpForm
-    success_url = "/login-page/"
+    success_url = "/login"
     

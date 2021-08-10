@@ -4,6 +4,35 @@
 {% block title %}Photopot{% endblock title %}
 
 {% block content %}
-
+    <div>
+        <h1>Photopot</h1>
+        <div>
+            <img src="" alt="fdsf">
+            <div>
+                <ul>
+                    <li><a href=" {% url 'upload-page' %}">Upload</a></li>
+                    <li><a href=" {% url 'favorite-page' %}">Favorite</a></li>
+                    <li>Rateus</li>
+                    <li>Aboutus</li>
+                </ul>
+            </div>
+        </div>
+        
+        
+    </div>
+    <div>
+        {% for a in mainPage %}
+            <div class="card" style="width: 18rem;">
+                <img src="{{a.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{a.description}}</h5>
+                    <p class="card-text">{{a.tag}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        
+        {% endfor %}
+     
+    </div>
 
 {% endblock content %}

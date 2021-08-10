@@ -6,10 +6,11 @@
     <form action="" method="POST">
         {% csrf_token %}
         <div>
-            {% for form_filter in form %}
+            {% for form in form %}
                 <ul>
-                    <li>{{form_filter.label}}</li>
-                    <li>{{form_filter}}</li>
+                    <li>{{form.label}}</li>
+                    <li>{{form}}</li>
+                    <li>{{error}}</li>
                     {% comment %} <li>{{form_filter.errors}}</li> {% endcomment %}
                 </ul>
             {% endfor %}

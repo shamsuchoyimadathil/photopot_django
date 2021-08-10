@@ -2,4 +2,9 @@
 
 {% block title %}Add your image{% endblock title %}
 
-{% block content %}{% endblock content %}
+{% block content %}
+    <form action="" method="POST">
+        {{form.as_p}}
+        <button class="btn btn-primary"> upload </button>
+    </form>
+{% endblock content %}
