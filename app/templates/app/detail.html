@@ -8,7 +8,7 @@
         {{detailPage.tag}}
         <img src="{{detailPage.image.url}}" alt="image not unavailable" class="img-fluid">
     </div>
-   <form action="{% url 'main-page' %}" method="POST">
+   <form action="{% url 'favorite-page' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="favorite_id" value={{detailPage.id}}> 
 
