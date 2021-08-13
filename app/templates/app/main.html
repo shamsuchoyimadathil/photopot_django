@@ -27,7 +27,8 @@
                 <div class="card-body">
                     <h5 class="card-title">{{a.description}}</h5>
                     <p class="card-text">{{a.tag}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <img src="{{a.image.url}}" alt="" class="img-fluid">
+                    <a href="{% url 'detail-page' a.pk %}" class="btn btn-primary" >detail</a>
                 </div>
             </div>
         

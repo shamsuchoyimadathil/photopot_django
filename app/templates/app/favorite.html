@@ -3,7 +3,18 @@
 {% block title %}Your favorite images{% endblock title %}
 
 {% block content %}
+    <section>
+        {% for a in images %}
+            {% if not has_images %}
+                <p>you don't have any post </p>
+            {% endif %}
 
+            <div>
+                <li>{{a.description}}</li>
+            </div>
+
+        {% endfor %}
+    </section>
     
 
 {% endblock content %}

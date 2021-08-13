@@ -17,7 +17,7 @@ class Upload(models.Model):
         max_length=50,
         choices=IMAGE_TAGS_CHOICES,
     )
-    image = models.ImageField()
+    image = models.ImageField(upload_to="images/")
 
 class SignUp(models.Model):
     username = models.CharField(max_length=50)
