@@ -8,17 +8,20 @@
 
     <form action="" method="POST">
 
-    {% csrf_token %}
-        <div class="container"> 
-        <h1>Login</h1>
+            {% csrf_token %}
+             <div class="container"> 
+            <h1>Login</h1>
+            
+            {% for form in form %}       
+                
+                <label for="uname"><b>{{form.label}}</b></label>
+                <div>{{form}}</div>   
+            {% endfor %}
+                <input type="hidden" name="next" value="{{next}}">
+                <p>{{form.errors}}</p>
+                <button type="submit">Login</button>
 
-        {% for form in form %}       
-            <label for="uname"><b>{{form.label}}</b></label>
-            <div>{{form}}</div>
-        {% endfor %}
-            <button type="submit">Login</button>
-
-         </div>
+            </div> 
     </form>
 
 {% endblock content %}

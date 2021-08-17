@@ -19,7 +19,8 @@ class MainPage(ListView):
 
 class LoginPage(LoginView):
     template_name = "app/login.html"
-    success_url = "/main"
+    #success_url = "/main"
+    model = models.SignUp
 
 
 class UploadPage(FormView):

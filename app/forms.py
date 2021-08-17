@@ -10,9 +10,9 @@ class SignUpForm(forms.ModelForm):
         widgets = {
             'password':forms.PasswordInput(),
             'confirm_password':forms.PasswordInput(),
-            'DOB':forms.SelectDateWidget(years=range(1900, 2100)),
+            'DOB':forms.SelectDateWidget(years=range(1970, 2100)),
         }
-        fields = "__all__"
+        fields = ("username","DOB","password","confirm_password")
         error_css_class = 'error'
 
     def clean(self):
