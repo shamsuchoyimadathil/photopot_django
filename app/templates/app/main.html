@@ -5,36 +5,53 @@
 {% block css %} {% static 'app/main.css' %}{% endblock css %}
 
 {% block content %}
-    <div>
-        <h1>Photopot</h1>
-        <div>
-            <img src="" alt="fdsf">
-            <div>
-                <ul>
-                    <li><a href=" {% url 'upload-page' %}">Upload</a></li>
-                    <li><a href=" {% url 'favorite-page' %}">Favorite</a></li>
-                    <li>Rateus</li>
-                    <li>Aboutus</li>
-                </ul>
-            </div>
-        </div>
-        
-        
-    </div>
-    <div>
-        {% for a in mainPage %}
-            <div class="card" style="width: 18rem;">
-                <img src="{{a.image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{a.description}}</h5>
-                    <p class="card-text">{{a.tag}}</p>
-                    <img src="{{a.image.url}}" alt="" class="img-fluid">
-                    <a href="{% url 'detail-page' a.pk %}" class="btn btn-primary" >detail</a>
+
+    <section>
+
+        <div class="navbar">
+
+            <div class="dropdown">
+                <div class="dropbtn"><i class="fa fa-list-ul"></i> <i class="fa fa-caret-down"></i></div>
+
+                <div class="dropdown-content">
+                    <a href=" {% url 'upload-page' %}">Upload</a>
+                    <a href="{% url 'favorite-page' %}">Favorite</a>
+                    <a href="#">Rateus</a>
+                    <a href="#">Aboutus</a>
                 </div>
             </div>
-        
+            <p href="#home">Photopot</a>
+        </div>
+
+    </section>
+
+
+    <section>
+        {% for a in mainPage %}
+            <a href="{% url 'detail-page' a.pk %}">
+                <div class="card">
+                    <img src="{{a.image.url}}" alt="loading" style="">
+                    <div class="container">
+                        <h4><b>{{a.description}}</b></h4>
+                        <p>#{{a.tag}}</p>
+                    </div>
+                </div>
+            </a>
         {% endfor %}
-     
-    </div>
+
+    </section>
+
+    <section>
+        <footer class="page-footer font-small bg-dark  ">
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3 text-white">© 2021 Copyright:
+                <a href="#"> Photopot</a>
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+    </section>
+
 
 {% endblock content %}

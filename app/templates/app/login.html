@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Login{% endblock title %}
+{% block css %}{% static 'app/login.css' %}{% endblock css %}
 
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        <div>
-            {% for form in form %}
-                <ul>
-                    <li>{{form.label}}</li>
-                    <li>{{form}}</li>
-                    <li>{{error}}</li>
-                    {% comment %} <li>{{form_filter.errors}}</li> {% endcomment %}
-                </ul>
-            {% endfor %}
-            <button type="submit" class="btn btn-primary"> Login</button>
-            {% comment %} {{form.as_p}} {% endcomment %}
-        </div>
-    </form>
 
+    <form action="" method="POST">
+
+    {% csrf_token %}
+        <div class="container"> 
+        <h1>Login</h1>
+
+        {% for form in form %}       
+            <label for="uname"><b>{{form.label}}</b></label>
+            <div>{{form}}</div>
+        {% endfor %}
+            <button type="submit">Login</button>
+
+         </div>
+    </form>
 
 {% endblock content %}

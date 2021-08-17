@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Add your image{% endblock title %}
+{% block css %}{% static 'app/upload.css' %}{% endblock css %}{% static 'app/upload.css' %}
 
 {% block content %}
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-primary"> upload </button>
-    </form>
+    <section>
+
+        <form action="" method="POST" enctype="multipart/form-data" class="container">
+            {% csrf_token %}
+            <h1>Upload Your Image</h1>
+           {{form.as_p}}
+            <input type="submit" value="Submit">
+        </form>
+
+    </section>
+
+
 {% endblock content %}
 

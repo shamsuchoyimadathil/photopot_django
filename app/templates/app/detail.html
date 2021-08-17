@@ -1,18 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}image{% endblock title %}
+{% block css %}{% static 'app/detail.css' %}{% endblock css %}{% static 'app/detail.css' %}
 
 {% block content %}
-    <div>
+    {% comment %} <div>
         {{detailPage.description}} <br>
         {{detailPage.tag}}
         <img src="{{detailPage.image.url}}" alt="image not unavailable" class="img-fluid">
-    </div>
-   <form action="{% url 'favorite-page' %}" method="POST">
+    </div> {% endcomment %}
+
+    <section>
+    
+
+        <div class="responsive container">
+            <div class="gallery">
+                {% comment %} <a target="_blank" href="img_5terre.jpg"> {% endcomment %}
+                <img src="{{detailPage.image.url}}" width="600" height="400">
+                </a>
+                <div class="desc">Add a description of the image here</div>
+            </div>
+        </div>
+
+        <form action="{% url 'favorite-page' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="favorite_id" value={{detailPage.id}}> 
 
         <button type="submit"> Add to Favorite</button>
-   </form>
+        </form>
+
+    </section>
+
+
+
+ 
 
 {% endblock content %}

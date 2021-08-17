@@ -13,6 +13,7 @@ class SignUpForm(forms.ModelForm):
             'DOB':forms.SelectDateWidget(years=range(1900, 2100)),
         }
         fields = "__all__"
+        error_css_class = 'error'
 
     def clean(self):
         cleaned_data = super(SignUpForm,self).clean()
@@ -33,7 +34,6 @@ class SignUpForm(forms.ModelForm):
         self.fields['username'].widget.attrs=({'class':'form-control','placeholder':'your username'})
         self.fields['password'].widget.attrs=({'class':'form-control','placeholder':'your password'})
         self.fields['confirm_password'].widget.attrs=({'class':'form-control','placeholder':'confirm password'})
-        self.fields['DOB'].widget.attrs=({'min':'1980-01-01','max':'2050-12-31'})
         
 
 
@@ -41,4 +41,8 @@ class SignUpForm(forms.ModelForm):
 class UploadForm(forms.ModelForm):
     class Meta:
         model = models.Upload 
-        fields =  "__all__"
+        fields =  "__all__" 
+
+    def __init__(self,*args, **kwargs):
+        super(UploadForm,self).__init__(*args, **kwargs)
+        self.fields['description'].widget.attrs=({'placeholder':'write about this image...'})

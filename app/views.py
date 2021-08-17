@@ -48,6 +48,7 @@ class DetailImage(DetailView):
 class Favorites(ListView):
     template_name = "app/favorite.html"
     model = models.Upload
+    
 
     def get(self,request):
         favorite_images = request.session.get("favorite_images")
@@ -67,7 +68,6 @@ class Favorites(ListView):
 
     def post(self,request):
         favorite_images = request.session.get("favorite_images")
-
         if favorite_images is None:
             favorite_images = []
 
