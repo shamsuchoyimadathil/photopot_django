@@ -9,6 +9,8 @@ from django.views.generic.list import ListView
 from . import models
 from . import forms
 
+from django.urls import reverse
+
 
 # Create your views here.
 class MainPage(ListView):
@@ -17,10 +19,30 @@ class MainPage(ListView):
     queryset = models.Upload.objects.all()
     context_object_name = "mainPage"
 
-class LoginPage(LoginView):
-    template_name = "app/login.html"
-    #success_url = "/main"
-    model = models.SignUp
+# class LoginPage(LoginView):
+#     template_name = "app/login.html"
+#     success_url = "/main"
+#     model = models.SignUp
+
+def loginpage(request):
+    if request.method == "POST":
+        form = forms.SignUpForm(request.POST)
+        # form.username = request.POST.get('username','')
+        # form.password = request.POST.get('password','')
+
+        if form.is_valid():
+            form.save()
+            
+            return HttpResponseRedirect("main-page")
+
+        return HttpResponseRedirect("/upload")
+
+    else:
+        form = forms.SignUpForm()
+        return render(request,"app/login.html",{
+            'form':form
+        })
+
 
 
 class UploadPage(FormView):
@@ -49,7 +71,6 @@ class DetailImage(DetailView):
 class Favorites(ListView):
     template_name = "app/favorite.html"
     model = models.Upload
-    
 
     def get(self,request):
         favorite_images = request.session.get("favorite_images")

@@ -9,19 +9,19 @@
     <form action="" method="POST">
 
             {% csrf_token %}
-             <div class="container"> 
+             <div class="container">
             <h1>Login</h1>
-            
-            {% for form in form %}       
-                
-                <label for="uname"><b>{{form.label}}</b></label>
-                <div>{{form}}</div>   
-            {% endfor %}
+
+                <label for="">{{form.username.label}}</label>
+                <div>{{form.username}}</div>
+                <label for="">{{form.password.label}}</label>
+                <div>{{form.password}}</div>
+
                 <input type="hidden" name="next" value="{{next}}">
                 <p>{{form.errors}}</p>
                 <button type="submit">Login</button>
 
-            </div> 
+            </div>
     </form>
 
 {% endblock content %}

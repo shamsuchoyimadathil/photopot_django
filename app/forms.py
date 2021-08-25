@@ -25,9 +25,6 @@ class SignUpForm(forms.ModelForm):
             raise ValidationError (
                 'the password confirmation does not match'
             ) 
-        
-
-
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)

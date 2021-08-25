@@ -5,21 +5,14 @@
 {% block css %}{% static 'app/detail.css' %}{% endblock css %}{% static 'app/detail.css' %}
 
 {% block content %}
-    {% comment %} <div>
-        {{detailPage.description}} <br>
-        {{detailPage.tag}}
-        <img src="{{detailPage.image.url}}" alt="image not unavailable" class="img-fluid">
-    </div> {% endcomment %}
 
     <section>
     
-
         <div class="responsive container">
             <div class="gallery">
-                {% comment %} <a target="_blank" href="img_5terre.jpg"> {% endcomment %}
                 <img src="{{detailPage.image.url}}" width="600" height="400">
                 </a>
-                <div class="desc">Add a description of the image here</div>
+                <div class="desc">{{detailPage.description}}</div>
             </div>
         </div>
 
@@ -27,7 +20,15 @@
         {% csrf_token %}
         <input type="hidden" name="favorite_id" value={{detailPage.id}}> 
 
-        <button type="submit"> Add to Favorite</button>
+        {% if detailPage.id %}
+            <button type="submit"> remove to Favorite</button>
+        {% else %}
+            <button type="submit"> Add to Favorite</button>
+        {% endif %}
+         
+
+
+        <a href="{{ detailPage.image.url }}" download="{{ detailPage.image.url }}"> <i class="fa fa-download fa-2x fontawesome-icon"></i></a>
         </form>
 
     </section>
