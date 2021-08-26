@@ -4,7 +4,8 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth.views import LoginView
 from django.views.generic.detail import DetailView
-from django.views.generic.list import ListView
+from django.views.generic.list import ListView 
+from django.contrib import messages
 
 from . import models
 from . import forms
@@ -19,23 +20,20 @@ class MainPage(ListView):
     queryset = models.Upload.objects.all()
     context_object_name = "mainPage"
 
-# class LoginPage(LoginView):
-#     template_name = "app/login.html"
-#     success_url = "/main"
-#     model = models.SignUp
 
 def loginpage(request):
     if request.method == "POST":
-        form = forms.SignUpForm(request.POST)
-        # form.username = request.POST.get('username','')
-        # form.password = request.POST.get('password','')
+        username = request.POST.get('username',None)
+        password = request.POST.get('password',None)
+        user_loopup = models.SignUp.objects.filter(username=username,password=password)
 
-        if form.is_valid():
-            form.save()
-            
-            return HttpResponseRedirect("main-page")
-
-        return HttpResponseRedirect("/upload")
+        if user_loopup.count == 1:
+            request.session.is_login = True
+            request.session.user_id = user_loopup.first().id 
+            return HttpResponseRedirect(reverse("main-page"))
+        else:
+            messages.add_message(request,messages.ERROR, "incorrect password or username")
+            return HttpResponseRedirect(reverse("login-page"))
 
     else:
         form = forms.SignUpForm()
@@ -95,9 +93,16 @@ class Favorites(ListView):
 
         favorite_id = int(request.POST["favorite_id"])
 
-        if favorite_id not in favorite_images:
-            favorite_images.append(favorite_id)
-            request.session["favorite_images"] = favorite_images
+        if 'add' in request.POST:
+            if favorite_id not in favorite_images:
+                favorite_images.append(favorite_id)
+
+        elif 'remove' in request.POST:
+            if favorite_id in favorite_images:
+                favorite_images.remove(favorite_id)
+
+        request.session["favorite_images"] = favorite_images
+        
 
         return HttpResponseRedirect("/")
 

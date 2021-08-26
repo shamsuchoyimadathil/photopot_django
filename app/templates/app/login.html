@@ -6,8 +6,15 @@
 
 {% block content %}
 
-    <form action="" method="POST">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="alert alert-danger">{{message}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
+    <form action="" method="POST">
             {% csrf_token %}
              <div class="container">
             <h1>Login</h1>

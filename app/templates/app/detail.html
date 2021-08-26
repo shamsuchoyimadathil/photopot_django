@@ -20,13 +20,11 @@
         {% csrf_token %}
         <input type="hidden" name="favorite_id" value={{detailPage.id}}> 
 
-        {% if detailPage.id %}
-            <button type="submit"> remove to Favorite</button>
+        {% if detailPage.id in request.session.favorite_images %}
+            <button type="submit" name='remove'> Remove from Favorite</button>
         {% else %}
-            <button type="submit"> Add to Favorite</button>
+            <button type="submit" name='add'> Add to Favorite</button>
         {% endif %}
-         
-
 
         <a href="{{ detailPage.image.url }}" download="{{ detailPage.image.url }}"> <i class="fa fa-download fa-2x fontawesome-icon"></i></a>
         </form>

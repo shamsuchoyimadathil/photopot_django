@@ -34,3 +34,7 @@ button:hover {
   padding: 16px;
   width: 50%;
 }
+
+li{
+  list-style: none;
+}
