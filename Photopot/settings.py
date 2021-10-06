@@ -38,9 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'app',
+
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,6 +76,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'Photopot.wsgi.application'
@@ -121,9 +134,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR / "static")
+STATIC_ROOT = os.path.join(BASE_DIR / "static/static_files")
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR /"bootstrap_files")
+    os.path.join(BASE_DIR /"static")
 ]
 
 # Default primary key field type
@@ -136,10 +149,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-AUTH_USER_MODEL = 'app.SignUp'
-
-AUTHENTICATION_BACKENDS = (
-    ('django.contrib.auth.backends.ModelBackend'),
-)
-
-LOGIN_REDIRECT_URL = '/upload'
+LOGIN_REDIRECT_URL = "upload-page"
+LOGOUT_REDIRECT_URL = "/" 

@@ -4,7 +4,6 @@ body {
   
 /* navbar */
 .navbar {
-  /* overflow: hidden; */
   background-color: #333;
   z-index: 4;
 }
@@ -54,9 +53,10 @@ i{
   text-align: center;
   text-decoration: none;
   font-weight: 700;
-  justify-content: center;
-  margin-right: 40%;
-
+  margin: auto;
+  /* justify-content: center; */
+  /* margin-right: 40%; */
+  
 }
 
 
@@ -73,13 +73,16 @@ i{
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 20%; 
     display: inline-block;
     padding:2px;
-    margin:10px 2%;
+    /* margin:10px 2%; */
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 3.5%;
     justify-content: center;
     border: 2px solid #556B2F;
     cursor: pointer;
+    width: 20%;
     
 }
 
@@ -100,5 +103,34 @@ a, a:hover, a:focus, a:active {
 img{
     width: 100%;
     height: 150px;
+
+}
+
+@media only screen and (max-width: 1200px){
+  .card{
+    width: 25%;
+    margin-left: 6%;
+  }
+}
+
+@media only screen and (max-width: 850px){
+  .card{
+    width: 35%;
+    margin-left: 10%;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .card{
+    width: 50%;
+    margin-left: 25%;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .card{
+    width: 80%;
+    margin-left: 9%;
+  }
 
 }

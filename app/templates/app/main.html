@@ -16,8 +16,6 @@
                 <div class="dropdown-content">
                     <a href=" {% url 'upload-page' %}">Upload</a>
                     <a href="{% url 'favorite-page' %}">Favorite</a>
-                    <a href="#">Rateus</a>
-                    <a href="#">Aboutus</a>
                 </div>
             </div>
             <p href="#home">Photopot</a>
@@ -32,7 +30,7 @@
                 <div class="card">
                     <img src="{{a.image.url}}" alt="loading" style="">
                     <div class="container">
-                        <h4><b>{{a.description}}</b></h4>
+                        <h4><b>{{a.title}}</b></h4>
                         <p>#{{a.tag}}</p>
                     </div>
                 </div>

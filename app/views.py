@@ -1,17 +1,11 @@
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-from django.contrib.auth.views import LoginView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView 
-from django.contrib import messages
 
 from . import models
 from . import forms
-
-from django.urls import reverse
-
 
 # Create your views here.
 class MainPage(ListView):
@@ -21,29 +15,8 @@ class MainPage(ListView):
     context_object_name = "mainPage"
 
 
-def loginpage(request):
-    if request.method == "POST":
-        username = request.POST.get('username',None)
-        password = request.POST.get('password',None)
-        user_loopup = models.SignUp.objects.filter(username=username,password=password)
-
-        if user_loopup.count == 1:
-            request.session.is_login = True
-            request.session.user_id = user_loopup.first().id 
-            return HttpResponseRedirect(reverse("main-page"))
-        else:
-            messages.add_message(request,messages.ERROR, "incorrect password or username")
-            return HttpResponseRedirect(reverse("login-page"))
-
-    else:
-        form = forms.SignUpForm()
-        return render(request,"app/login.html",{
-            'form':form
-        })
-
-
-
 class UploadPage(FormView):
+    login_required = True
     template_name = "app/upload.html"
     success_url= "/main"
     form_class = forms.UploadForm
@@ -105,21 +78,3 @@ class Favorites(ListView):
         
 
         return HttpResponseRedirect("/")
-
-
-
-
-class SignUP(FormView):
-    template_name = "app/signup.html"
-    form_class = forms.SignUpForm
-
-    def post(self,request):
-        form = forms.SignUpForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect("/login")
-
-        return render(request,"app/signup.html",{
-            "form":form
-        })
