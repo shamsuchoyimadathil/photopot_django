@@ -1,0 +1,1 @@
+web: gunicorn Photopot.wsgi --log-file -
